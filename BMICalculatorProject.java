@@ -25,11 +25,15 @@ public class BMICalculatorProject extends Application {
 		//Button to calculate BMI.
 		Button buttonCalculate = new Button("Calculate BMI");
 		buttonCalculate.setOnAction(e -> {
-		    double weight = Double.parseDouble(weightField.getText().replace(',', '.'));
-		    double height = Double.parseDouble(heightField.getText().replace(',', '.'));
-		
-		    double bmi = weight / (height * height);
-		    labelResult.setText(String.format("Your BMI is: %.2f", bmi));
+			try {	
+				double weight = Double.parseDouble(weightField.getText().replace(',', '.'));
+				double height = Double.parseDouble(heightField.getText().replace(',', '.'));
+
+				double bmi = weight / (height * height);
+				labelResult.setText(String.format("Your BMI is: %.2f", bmi));
+			} catch (NumberFormatException ex) {
+				labelResult.setText("Please enter valid numbers for weight and height");
+			}
 		});
 
 		//Vertical layout
